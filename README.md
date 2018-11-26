@@ -1,14 +1,14 @@
 # vue项目
 
 
-##修改了新的
+## 修改了新的
 
 
-###修改
+### 修改
 
 
 
-##首页 
+## 首页 
 
 1. HEADER 使用了 Mint-UI中的Header组件
 2. Tabber区域使用了MUI 的 tabber组件
@@ -28,3 +28,8 @@
 
 ## 加载首页轮播图数据
  1. 获取数据， 使用 vue-resource
+ 2. 使用vue-resource 的 this.$http.get 获取数据
+ 3. 获取到的数据绑定到 data
+ 4. v-for 遍历
+
+## 九宫格区域 
