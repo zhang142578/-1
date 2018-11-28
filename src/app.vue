@@ -40,6 +40,7 @@
 <style scoped>
 .app-c{
     padding-top:40px;
+    padding-bottom: 40px;
     overflow-x: hidden;
 }
 .v-enter{

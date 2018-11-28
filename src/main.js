@@ -6,6 +6,7 @@ import VueResource from "vue-resource"
 
 Vue.use(vueRouter);
 Vue.use(VueResource);
+Vue.http.options.root = 'https://route.showapi.com/181-1';
 
 //按需导入mintui中的组件
 import {Header, Swipe, SwipeItem } from "mint-ui"
