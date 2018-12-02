@@ -18,6 +18,7 @@
 </template>
 <script>
 import {Toast} from "mint-ui"
+
 export default {
     data(){
         return{
@@ -29,7 +30,7 @@ export default {
     },
     methods:{
         getnewslist(){
-            this.$http.post("",{
+            this.$http.post("https://route.showapi.com/181-1",{
                  "showapi_timestamp": this.date,
                  "showapi_appid": '81469', //这里需要改成自己的appid
                  "showapi_sign": 'eea8829a331c4c3d86b3c8711458fee1',  //这里需要改成自己的应用的密钥secret

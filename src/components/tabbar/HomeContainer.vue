@@ -1,7 +1,6 @@
 <template>
     <div>
         
-        <h3>HomeContainer</h3>
     
         <!-- 轮播图区域 -->
         <mt-swipe :auto="4000">
@@ -15,12 +14,12 @@
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/newslist"> 
 		                <img src="../../images/menu1.png" alt="">
 		                <div class="mui-media-body">新闻资讯</div></router-link></li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/photolist">
 		                <img src="../../images/menu2.png" alt="">
-		                <div class="mui-media-body">图片分享</div></a></li>
-		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a>
+		                <div class="mui-media-body">图片分享</div></router-link></li>
+		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to='/home/goodslist'>
 		                <img src="../../images/menu3.png" alt="">
-		                <div class="mui-media-body">商品购买</div></a></li>
+		                <div class="mui-media-body">商品购买</div></router-link></li>
 		        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a>
 		                <img src="../../images/menu4.png" alt="">
 		                <div class="mui-media-body">留言反馈</div></a></li>
@@ -44,25 +43,24 @@ export default {
         }
     },
     created(){
-       this.generateTimeReqestNumber()
+        this.generateTimeReqestNumber()
         this.getLunbotu()
     },
     methods:{
         getLunbotu(){
-            this.$http.post("",{
+            this.$http.post("https://route.showapi.com/181-1",{
                  "showapi_timestamp": this.date,
                  "showapi_appid": '81469', //这里需要改成自己的appid
                  "showapi_sign": 'eea8829a331c4c3d86b3c8711458fee1',  //这里需要改成自己的应用的密钥secret
                  "num":"10",
                  "rand":"1",
                  "word":"盗墓笔记",
-                 "page":"1",
-                 "src":"人民日报"
+                 "page":"1"
             },{emulateJSON:true})
             .then(result=>{
                 if(result.status == 200){
                    // console.log(result.status)
-                    //console.log(result)
+                    console.log(result)
                    // console.log(result.body.showapi_res_body.newslist)
                 
                         this.lunbotulist=result.body.showapi_res_body.newslist

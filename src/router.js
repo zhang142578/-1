@@ -6,6 +6,8 @@ import shopcart from './components/tabbar/ShopcartContainer.vue'
 import search from './components/tabbar/SearchContainer.vue'
 import newslist from './components/news/Newslist.vue'
 import newsinfo from './components/news/newinfo.vue'
+import photolist from './components/photos/photolist.vue'
+import goodslist from './components/goods/goodslist.vue'
 
 
 
@@ -17,7 +19,9 @@ var router=new VueRouter({
         {path:"/shopcart",component:shopcart},
         {path:"/search",component:search},
         {path:"/home/newslist",component:newslist},
-        {path:"/home/newsinfo/:id",component:newsinfo}
+        {path:"/home/newsinfo/:id",component:newsinfo},
+        {path:"/home/photolist",component:photolist},
+        {path:"/home/goodslist",component:goodslist}
     ],
     linkActiveClass:"mui-active" //覆盖默认路由高亮的类 “router-link-active”
 })
