@@ -4,6 +4,11 @@ import vueRouter from 'vue-router'
 
 import VueResource from "vue-resource"
 
+import Vuex from 'vuex'
+
+import store from "./store/store.js"
+
+Vue.use(Vuex)
 Vue.use(vueRouter);
 Vue.use(VueResource);
 // Vue.http.options.root = 'https://route.showapi.com/181-1';
@@ -32,5 +37,6 @@ import app from "./app.vue"
 var vm=new Vue({
     el:"#app",
     render:c => c(app),
-    router
+    router,
+    store,
 })

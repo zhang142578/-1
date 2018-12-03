@@ -1,52 +1,44 @@
 <template>
     <div class="goods-list">
-        <div class="goods-item">
-            <img src="../../images/小米手机.jpg" alt="">
-            <h1 class="title">小米(MI)小米Note 16G双网通版</h1>
+        <div class="goods-item"  v-for="(item,index) in goodslist" :key="item.productId">
+            
+               <router-link class="ceng" :to="'/home/goods/'+index">
+                <img :src="item.productImage" alt="">
+            <h1 class="title">{{item.productName}}</h1>
             <div class="info">
                 <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
+                    <span class="now">￥{{item.productPrice}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
                     <span>剩60件</span>
                 </p>
             </div>
-        </div>
-        <div class="goods-item">
-            <img src="../../images/小米手机.jpg" alt="">
-            <h1 class="title">小米(MI)小米Note 16G双网通版</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goods-item">
-            <img src="../../images/尼康.jpg" alt="">
-            <h1 class="title">尼康相机</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span>剩60件</span>
-                </p>
-            </div>
+               </router-link>
         </div>
     </div>
 </template>
 <script>
+import data from "../../data.json"
 export default {
-    
+    data(){
+        return{
+            goodslist:[]
+        }
+    },
+    created(){
+        this.getlist();
+    },
+    methods:{
+        getlist(){
+            this.$http.get("src/data.json").then(result=>{
+                //console.log(result)
+              //  console.log(result.body.result.list[0].productImage)
+                this.goodslist=result.body.result.list;
+                console.log(this.goodslist);
+            })
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -55,17 +47,23 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
+    
     .goods-item{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+       
         padding:2px;
         min-height: 290px;
         margin:3px 0 ;
         border:1px solid #ccc;
         box-shadow: 0 0 8px #ccc;
         width:49%;
-        img{
+       .ceng{
+           color: black;
+        display: flex;
+        height: 290px;
+        flex-direction: column;
+        justify-content: space-between;
+            img{
             width:100%;
         }
 
@@ -85,11 +83,6 @@ export default {
                     font-weight: bold;
                     font-size:16px;
                 }
-                .old{
-                    text-decoration: line-through;
-                    font-size:12px;
-                    margin-left:10px;
-                }
             }
             .sell{
                 display: flex;
@@ -97,6 +90,7 @@ export default {
                 font-size:13px;
             }
         }
+       }
     }
 }
 </style>

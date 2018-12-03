@@ -4,7 +4,17 @@
     </div>
 </template>
 <script>
-
+import bus from '../bus'
+export default{
+data(){
+    return{
+        data:[],
+    }
+},
+mounted(){
+   
+}
+}
 </script>
 <style>
 

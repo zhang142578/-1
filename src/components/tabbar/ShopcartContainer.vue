@@ -1,10 +1,19 @@
 <template>
-    <div><h3>ShopcartContainer</h3></div>
+    <div>
+      {{getcity}}
+    </div>
 </template>
 <script>
-export default {
-    
-}
+export default{
+
+ computed:{
+    getcity(){
+      // 通过vuex的getters方法来获取state里面的数据
+      return this.$store.getters.getCityFn;
+      }
+    }
+  }
+
 </script>
 <style lang="scss" scoped>
 
