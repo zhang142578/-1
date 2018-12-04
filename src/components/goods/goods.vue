@@ -16,24 +16,32 @@
     </div>
 </template>
 <script>
+
 import goods from '../../data'
-import bus from "../../bus.js"
+import {Toast} from "mint-ui"
 export default {
     data(){
         return{
             id:this.$route.params.id,
+            num:1,
             data:{},
-            num:1
+            shuliang:0,
+            correct:false
         }
     },
     created(){
         this.show()
     },
+    computed:{
+        shopcart(){
+           return this.$store.getters.getgoods
+        }
+    },
     methods:{
         show(){
             this.$http.get("src/data.json").then(result=>{
                 this.data=result.body.result.list[this.id]
-                console.log(this.data)
+               // console.log(this.data)
             })
         },
         add(){
@@ -47,9 +55,60 @@ export default {
 
             }
         },
+        judge(){
+            this.correct=false;
+            for(let i=0;i<this.shopcart.length;i++){
+               if(parseInt(this.shopcart[i].ID)==parseInt(this.id)){
+                   this.correct=true;
+               }
+           }
+        },
        addcart(){
-           bus.$emit("addcart","666")
-           console.log("OK")
+           
+           this.judge()
+          //console.log(this.shopcart)
+         if(this.num==0){
+             Toast("数量为0哦")
+         }
+         else{
+             if(this.shopcart.length==0){
+              this.$store.commit("setgoods",{ID:this.id, num:this.num,data:this.data})
+           Toast("添加成功")
+           this.num=0;
+           this.setnum();
+           //console.log(1)
+       }
+       else{
+          // console.log(this.correct)
+           if(this.correct){
+               for(var i=0;i<this.shopcart.length;i++){
+                 this.$store.commit("changegoods",{num:this.num,index:i})
+                   Toast("追加成功")
+                   this.num=0;
+                   this.setnum()
+               }
+           }
+           else{
+               this.$store.commit("setgoods",{ID:this.id, num:this.num,data:this.data})
+           Toast("添加成功")
+           this.num=0;
+           this.setnum();
+          // console.log(1)
+           }
+       }
+     }
+       },
+       setnum(){
+           if(this.shopcart.length==0){
+
+           }
+           else{
+               this.shuliang=0;
+               for(var i=0;i<this.shopcart.length;i++){
+                   this.shuliang+=this.shopcart[i].num;
+                   this.$store.commit("setNum",this.shuliang)
+               }
+           }
        }
     }
 }    

@@ -5,7 +5,6 @@
 
 
 
-
         <!--中间的router-view-->
 
         <transition>
@@ -24,7 +23,7 @@
                 <span class="mui-tab-label">会员</span>
             </router-link>
             <router-link class="mui-tab-item-11b" to="/shopcart">
-                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">{{this.showdata}}</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item-11b" to="/search">
@@ -36,7 +35,23 @@
 </template>
 
 <script>
-
+export default{
+    data(){
+        return{
+            
+        }
+    },
+    computed:{
+        showdata(){
+            return num= this.$store.getters.getNum
+            
+        }
+    },
+    
+    methods:{
+    
+    }
+}
 </script>
 <style scoped>
 .app-c{
