@@ -43,6 +43,7 @@ export default {
             this.$http.get("src/data.json").then(result=>{
                 this.data=result.body.result.list[this.id]
                // console.log(this.data)
+              // console.log(this.shopcart)
             })
         },
         add(){

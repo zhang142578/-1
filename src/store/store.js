@@ -6,6 +6,7 @@ let store = new Vuex.Store({
     // 1. state
     state:{
         goods:[],
+        zongji:0,
         num:0
     },
 
@@ -17,6 +18,18 @@ let store = new Vuex.Store({
         },
         getNum(state){
             return state.num;
+        },
+        getzongji(state){
+            console.log(state)
+            var x;
+            state.zongji=0;
+            for(var i=0;i<state.goods.length;i++){
+                state.zongji+=state.goods[i].data.productPrice*state.goods[i].num
+                
+            }
+            console.log(x)
+            console.log(state.zongji)
+            return state.zongji
         }
     },
     // 3. actions
@@ -46,6 +59,34 @@ let store = new Vuex.Store({
         },
         setNum(state,name){
             state.num=name;
+        },
+        miunsNum(state,name){
+            for(var i=0;i<state.goods.length;i++){
+                if(state.goods[i].ID==name){
+                    if(state.goods[i].num<2){
+
+                    }
+                    else{
+                        state.goods[i].num--;
+                    }
+                }
+            }
+        },
+        addNum(state,name){
+            //console.log(state)
+            //console.log(state.goods[0])
+            for(var i=0;i<state.goods.length;i++){
+                if(state.goods[i].ID==name){
+                    state.goods[i].num++
+                }
+            }
+        },
+        remove(state,name){
+            for(var i=0;i<state.goods.length;i++){
+                if(state.goods[i].ID==name){
+                    state.goods.splice(i,1)
+                }
+            }
         }
     }
 });

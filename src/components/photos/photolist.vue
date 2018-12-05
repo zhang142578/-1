@@ -46,12 +46,12 @@ export default {
         getData(){
             this.$http.get("https://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/1").then(result=>{
                if(result.status==200){
-                   console.log(result.body.results)
+                  // console.log(result.body.results)
                    this.data=result.body.results
                    for(let i=0;i<result.body.results.length;i++){
                        this.img[i]=result.body.results[i].url
                    }
-                   console.log(this.img)
+                  // console.log(this.img)
                }
                else{
                    Toast("获取图片列表失败")
