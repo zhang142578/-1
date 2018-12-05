@@ -4,8 +4,8 @@
         <div id="slider" class="mui-slider">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
-						<a :class="['mui-control-item']" v-for="item in data" :key="item.thumb" @click="getData()">
-							{{item.name}}
+						<a :class="['mui-control-item']" v-for="item in data" :key="item.id" >
+							{{item.type}}
                             {{item.channelid}}
 						</a>
 					</div>
@@ -15,7 +15,7 @@
 
             <!-- 图片区域 -->
             <ul>
-                 <li v-for="item in img" :key="item.thumb">
+                 <li v-for="item in img" :key="item.url">
                      <img  v-lazy="item">
                  </li>
             </ul>
@@ -44,24 +44,18 @@ export default {
     },
     methods:{
         getData(){
-            this.$http.get("https://api.apiopen.top/musicBroadcasting").then(result=>{
-                if(result.status==200){
-                    // this.data=result.body;
-                    this.data=result.body.result[0].channellist
-                   
-                   for(var i=0;i<result.body.result[0].channellist.length;i++){
-                   // console.log(result.body.result[0].channellist[i].thumb)
-                    this.img[i]= {id:result.body.result[0].channellist[i].channelid,src:result.body.result[0].channellist[i].thumb}
-                    
-                }
-                this.imglist=this.img;
-                     this.data.unshift({name:"全部",channelid:0})
-                   // console.log(this.id);
-                }
-                
-                else{
-                    Toast("获取列表失败")
-                }
+            this.$http.get("https://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/1").then(result=>{
+               if(result.status==200){
+                   console.log(result.body.results)
+                   this.data=result.body.results
+                   for(let i=0;i<result.body.results.length;i++){
+                       this.img[i]=result.body.results[i].url
+                   }
+                   console.log(this.img)
+               }
+               else{
+                   Toast("获取图片列表失败")
+               }
             })
         },
         // getImg(){

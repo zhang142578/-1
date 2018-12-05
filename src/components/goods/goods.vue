@@ -26,7 +26,8 @@ export default {
             num:1,
             data:{},
             shuliang:0,
-            correct:false
+            correct:false,
+            index:0
         }
     },
     created(){
@@ -59,6 +60,7 @@ export default {
             this.correct=false;
             for(let i=0;i<this.shopcart.length;i++){
                if(parseInt(this.shopcart[i].ID)==parseInt(this.id)){
+                   this.index=i;
                    this.correct=true;
                }
            }
@@ -81,12 +83,13 @@ export default {
        else{
           // console.log(this.correct)
            if(this.correct){
-               for(var i=0;i<this.shopcart.length;i++){
-                 this.$store.commit("changegoods",{num:this.num,index:i})
+               
+                 this.$store.commit("changegoods",{num:this.num,index:this.index})
                    Toast("追加成功")
                    this.num=0;
                    this.setnum()
-               }
+                   
+                    this.index=0;
            }
            else{
                this.$store.commit("setgoods",{ID:this.id, num:this.num,data:this.data})

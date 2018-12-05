@@ -35,7 +35,7 @@ export default {
                 //console.log(result)
               //  console.log(result.body.result.list[0].productImage)
                 this.goodslist=result.body.result.list;
-                console.log(this.goodslist);
+                //console.log(this.goodslist);
             })
         }
     }

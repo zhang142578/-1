@@ -60,7 +60,7 @@ export default {
             .then(result=>{
                 if(result.status == 200){
                    // console.log(result.status)
-                    console.log(result)
+                    //console.log(result)
                    // console.log(result.body.showapi_res_body.newslist)
                 
                         this.lunbotulist=result.body.showapi_res_body.newslist

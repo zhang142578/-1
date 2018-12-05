@@ -1,10 +1,14 @@
 <template>
     <div class="app-c">
         <!--顶部header-->
-        <mt-header fixed title="123123123123vue项目"></mt-header>
+        <mt-header fixed title="vue项目">
+          <router-link to='/' slot="left">
+          <mt-button icon="back" @click="back()">返回  </mt-button>
+          </router-link>
+        </mt-header>
+        
 
-
-
+ 
         <!--中间的router-view-->
 
         <transition>
@@ -48,9 +52,18 @@ export default{
         }
     },
     
-    methods:{
-    
+   
+     methods: {
+        back(){
+            if (window.history.length <= 1) {
+                this.$router.push({path:'/'})
+                return false
+            } else {
+                this.$router.go(-1)
+            }
+        }
     }
+    
 }
 </script>
 <style scoped>
